@@ -11,7 +11,7 @@ const Zoho_Employee_Schema = new mongoose.Schema({
   },
   "First Name": String,
   "Employee ID": {
-    type: Number,
+    type: String,
     unique: true,
   },
   Photo: String,

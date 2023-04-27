@@ -169,7 +169,7 @@ exports.get_user_list_by_status_code = async (req, res) => {
   const active_user_list = await Zoho_Model.find({
     "Employee Status": "Active",
   })
-    .sort({ "Employee ID": -1 })
+    // .sort({ "Employee ID": -1 })
     .select({
       token: 0,
     });
@@ -181,7 +181,7 @@ exports.get_user_list_by_status_code = async (req, res) => {
       { "Employee Status": "" },
     ],
   })
-    .sort({ "Employee ID": -1 })
+    // .sort({ "Employee ID": -1 })
     .select({
       token: 0,
     });
@@ -195,7 +195,7 @@ exports.get_user_list_by_status_code = async (req, res) => {
       },
     ],
   })
-    .sort({ "Employee ID": -1 })
+    // .sort({ "Employee ID": -1 })
     .select({
       token: 0,
     });
@@ -207,7 +207,7 @@ exports.get_user_list_by_status_code = async (req, res) => {
       { off_boarding_status: false },
     ],
   })
-    .sort({ "Employee ID": -1 })
+    // .sort({ "Employee ID": -1 })
     .select({
       token: 0,
     });
