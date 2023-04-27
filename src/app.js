@@ -22,6 +22,7 @@ app.use(
 
 // Schedule the controller function to run at 12:00 PM every day
 // cron.schedule("min(0-59) hr(0-23) day(1-31),mnth(1-31), day_of_week(0-6,0=sunday)
+// cron.schedule("min(0-59) hr(0-23) day(1-31),mnth(1-31), day_of_week(0-6,0=sunday)
 cron.schedule("0 12 * * *", () => {
   console.log("zoho data fetch at 12:00 AM");
   // zoho_controller.compare_data_between_zoho_and_database();
