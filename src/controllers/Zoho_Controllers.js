@@ -43,6 +43,7 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
           "Email address": 1,
           _id: 1,
           "Employee ID": 1,
+          "Reporting Manager": 1,
           "Zoho Role": 1,
           "Acenet Role": 1,
           Department: 1,
@@ -71,6 +72,7 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
               ? "Team member"
               : userDetails[0]["Acenet Role"],
           generate_auth_token,
+          reporting_manager: userDetails[0]["Reporting Manager"],
         });
       }
     }

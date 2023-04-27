@@ -16,5 +16,8 @@ router
 router
   .route("/get_travel_request_by_id/:_id")
   .get(travel_request_controller.get_travel_request_by_id);
+router
+  .route("/get_travel_request_by_email_id/:email_id")
+  .get(travel_request_controller.get_travel_request_by_email_id);
 
 module.exports = router;
