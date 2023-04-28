@@ -24,7 +24,7 @@ router
   .get(auth, user_controller.get_user_list_By_Id);
 router
   .route("/get_user_list_by_role_name/")
-  .get(auth, user_controller.get_user_list_By_Role_Name);
+  .get(user_controller.get_user_list_By_Role_Name);
 // router
 //   .route("/users_upload_by_file")
 //   .post(user_controller.users_upload_by_file);
