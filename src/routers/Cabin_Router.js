@@ -4,7 +4,7 @@ const router = new express.Router();
 const cabin_controller = require("../controllers/Cabin_Controllers");
 // <!=============== Cabin ====================>
 
-router.route("/cabin_add").post(auth, cabin_controller.post_cabin_list);
+router.route("/cabin_add").post(cabin_controller.post_cabin_list);
 router
   .route("/cabin_list_by_id/:_id")
   .get(auth, cabin_controller.get_cabin_list_by_id);

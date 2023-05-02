@@ -9,7 +9,7 @@ exports.post_cabin_list = async (req, res) => {
   //   token,
   // });
   // const hexColor = `#${Math.random().toString(16).slice(2, 8).padEnd(6, 0)}`;
-  // console.log("xasa", req.body);
+  console.log("xasa", req.body);
   await Cabin_Model.create(req.body);
   res.status(201).send({ message: "created" });
 };

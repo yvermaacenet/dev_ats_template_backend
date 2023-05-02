@@ -21,11 +21,12 @@ router
 //   .get(user_controller.get_user_list_by_off_boarding_counter);
 router
   .route("/get_user_details_by_id/:_id")
-  .get(auth, user_controller.get_user_list_By_Id);
+  .get(user_controller.get_user_list_By_Id);
 router
   .route("/get_user_list_by_role_name/")
   .get(user_controller.get_user_list_By_Role_Name);
 // router
 //   .route("/users_upload_by_file")
 //   .post(user_controller.users_upload_by_file);
+// router.route("/users").get(user_controller.get_users);
 module.exports = router;

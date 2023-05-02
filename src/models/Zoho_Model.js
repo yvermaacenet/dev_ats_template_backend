@@ -59,7 +59,7 @@ const Zoho_Employee_Schema = new mongoose.Schema({
   off_boarding_status: { type: Boolean },
   creation_date: {
     type: Date,
-    default: Date.now,
+    default: "2023-05-01T14:50:52.894+00:00",
   },
 });
 // <!=============== Generate Token ====================>

@@ -4,6 +4,7 @@
 // const Cabin_Slot_Booking_Model = require("../models/Cabin_Slot_Booking_Model");
 // const Cabin_Model = require("../models/Cabin_Model");
 // const Department_Model = require("../models/Department_Models");
+const On_Boarding_Model = require("../models/On_Boarding_Model");
 const Zoho_Model = require("../models/Zoho_Model");
 // const { default: axios } = require("axios");
 
@@ -188,6 +189,7 @@ exports.get_user_list_by_status_code = async (req, res) => {
         {
           creation_date: { $gte: new Date(process.env.SPECIFIC_DATE) },
         },
+        // { initiate_on_boarding_status: true },
         {
           on_boarding_status: false,
         },
@@ -268,9 +270,9 @@ exports.get_user_list_by_status_code = async (req, res) => {
 //   res.status(201).send(user_list);
 // };
 exports.get_user_list_By_Id = async (req, res) => {
-  const user_list = await Zoho_Model.find({ _id: req.params._id }).select({
-    token: 0,
-  });
+  // console.log(req.params._id);
+  const _id = req.params._id;
+  const user_list = await Zoho_Model.findById({ _id });
   res.status(201).send(user_list);
 };
 exports.get_user_list_By_Role_Name = async (req, res) => {
@@ -546,4 +548,26 @@ exports.get_user_list_By_Role_Name = async (req, res) => {
 //   // console.log(record);
 //   // Redirect the user to the Zoho login page
 //   res.send("code");
+// };
+// exports.get_users = async (req, res) => {
+//   // await Zoho_Model.findByIdAndUpdate(
+//   //   { _id },
+//   //   {
+//   //     $set: { ...req.body },
+//   //   },
+//   //   { new: true }
+//   // );
+//   const dd = await Zoho_Model.find();
+//   const ff = await On_Boarding_Model.find();
+//   const res2 = db.createView("Zoho_Model", [
+//     {
+//       $lookup: {
+//         from: "On_Boarding_Model",
+//         localField: "_id",
+//         foreignField: "user_id",
+//         as: "inventoryDocs",
+//       },
+//     },
+//   ]);
+//   res.status(201).send(res2);
 // };

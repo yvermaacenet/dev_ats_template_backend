@@ -95,7 +95,9 @@ exports.compare_data_between_zoho_and_database = async (req, res) => {
         }
       );
       // console.log(record?.data);
-      const userDetails = await Zoho_Model.find();
+      const userDetails = await Zoho_Model?.find();
+      // console.log("userDetails");
+
       const gettingDataForUpdateByEmail = [];
       function compareData(obj1, obj2) {
         var resp1 = {};
