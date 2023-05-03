@@ -189,7 +189,6 @@ exports.get_user_list_by_status_code = async (req, res) => {
         {
           creation_date: { $gte: new Date(process.env.SPECIFIC_DATE) },
         },
-        // { initiate_on_boarding_status: true },
         {
           on_boarding_status: false,
         },
@@ -202,7 +201,6 @@ exports.get_user_list_by_status_code = async (req, res) => {
         // {
         //   creation_date: { $gte: new Date(process.env.SPECIFIC_DATE) },
         // },
-        { initiate_off_boarding_status: true },
         { off_boarding_status: false },
       ],
     }).select({
