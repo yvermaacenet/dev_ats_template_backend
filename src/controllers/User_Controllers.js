@@ -200,6 +200,7 @@ exports.get_user_list_by_status_code = async (req, res) => {
       $and: [
         { initiate_off_boarding_status: true },
         { off_boarding_status: false },
+        //....
       ],
     }).select({
       token: 0,
