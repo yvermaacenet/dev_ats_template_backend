@@ -2,9 +2,9 @@ const location_model = require("../models/Location_Model");
 
 exports.post_new_location = async (req, res) => {
   const name = req.body.name;
-  // console.log(name);
+
   const cityExist = await location_model.findOne({ name: name });
-  // console.log(cityExist);
+
   if (!cityExist || cityExist === null) {
     await location_model.create(req.body);
     res.status(201).send({ message: "created" });

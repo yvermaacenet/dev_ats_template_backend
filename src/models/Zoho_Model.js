@@ -30,11 +30,7 @@ const Zoho_Employee_Schema = new mongoose.Schema({
   "Last Name": String,
   Location: String,
   "Zoho Role": String,
-  // role: [{ type: { value: Number, name: String } }],
-  // password: {
-  //   type: String,
-  //   trim: true,
-  // },
+
   "Added Time": String,
   createdTime: String,
   "Acenet Role": String,
@@ -51,18 +47,17 @@ const Zoho_Employee_Schema = new mongoose.Schema({
   "Date of Joining": String,
   Extension: String,
   "Reporting Manager": String,
-  // on_boarding_steper_counter: { type: Number },
+
   on_boarding_status: { type: Boolean },
   initiate_on_boarding_status: { type: Boolean },
   initiate_off_boarding_status: { type: Boolean },
-  // off_boarding_steper_counter: { type: Number },
+
   off_boarding_status: { type: Boolean },
   creation_date: {
     type: Date,
     default: "2023-05-01T14:50:52.894+00:00",
   },
 });
-// <!=============== Generate Token ====================>
 
 Zoho_Employee_Schema.statics.generateAuthToken = async function (_id) {
   try {
@@ -78,28 +73,23 @@ Zoho_Employee_Schema.statics.generateAuthToken = async function (_id) {
     res.send(error);
   }
 };
-// <!=============== Generate Cookies ====================>
 
 Zoho_Employee_Schema.statics.generateCookie = async function (req, res, token) {
-  // console.log("req", req);
-  // console.log("res", res);
-  // console.log("token", token);
   try {
     const cookieOptions = {
       sameSite: "strict",
       path: "/",
-      expires: new Date(Date.now() + 3600000), // Set expiration time to 1 hour from now
+      expires: new Date(Date.now() + 3600000),
       httpOnly: false,
       secure: false,
     };
     const cookie = res.cookie("Access_Token", token, cookieOptions).status(201);
-    // console.log("cookie", cookie);
+
     return cookie;
   } catch (err) {
     res.send(err);
   }
 };
-// <!=============== Create Hash Password ====================>
 
 Zoho_Employee_Schema.pre("save", async function (next) {
   if (this.isModified("password")) {
@@ -107,7 +97,6 @@ Zoho_Employee_Schema.pre("save", async function (next) {
   }
   next();
 });
-// <!=============== Admin Model ====================>
 
 const Zoho_Model = new mongoose.model(
   "Zoho_Employee_tbl",
@@ -115,4 +104,3 @@ const Zoho_Model = new mongoose.model(
 );
 
 module.exports = Zoho_Model;
-// module.exports = mongoose.model("ZohoEmployee", Zoho_Employee_Schema);

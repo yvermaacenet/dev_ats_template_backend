@@ -27,7 +27,6 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
             },
           }
         );
-        // if (response2?.data?.Email === "system@acenet.io") {
         const envData = fs.readFileSync(".env", "utf8");
         const newEnvData = envData.replace(
           /REFRENCE_TOKEN\s*=\s*".*"/,
