@@ -198,9 +198,9 @@ exports.get_user_list_by_status_code = async (req, res) => {
     });
     const pending_offboarding_users_list = await Zoho_Model.find({
       $and: [
-        // {
-        //   creation_date: { $gte: new Date(process.env.SPECIFIC_DATE) },
-        // },
+        {
+          creation_date: { $gte: new Date(process.env.SPECIFIC_DATE) },
+        },
         { off_boarding_status: false },
       ],
     }).select({
