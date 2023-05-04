@@ -122,8 +122,6 @@ exports.compare_data_between_zoho_and_database = async (req, res) => {
       ).map((val) => {
         (val.initiate_on_boarding_status = false),
           (val.initiate_off_boarding_status = false),
-          // (val.on_boarding_steper_counter = 0),
-          //   (val.off_boarding_steper_counter = 0),
           (val.on_boarding_status = false),
           (val.off_boarding_status = false);
 
