@@ -27,7 +27,7 @@ cron.schedule("02 16 * * *", () => {
   console.log(
     "Acenet workflow data base download at 00:00 on every 10th day-of-month"
   );
-  db_controller.db_backup();
+  // db_controller.db_backup();
 });
 
 const User_Router = require("./routers/User_Router");
