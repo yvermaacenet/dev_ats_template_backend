@@ -15,7 +15,7 @@ router
   .get(auth, cabin_Slot_Booking_controller.get_cabin_slot_booking);
 router
   .route("/cabin_slot_booking_by_location/:location")
-  .get(cabin_Slot_Booking_controller.get_cabin_slot_booking_by_location);
+  .get(auth, cabin_Slot_Booking_controller.get_cabin_slot_booking_by_location);
 router
   .route("/cabin_slot_booking/:_id")
   .put(auth, cabin_Slot_Booking_controller.update_cabin_slot_booking);

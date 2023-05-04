@@ -6,6 +6,6 @@ const documents_controller = require("../controllers/Documents_Controller");
 
 router
   .route("/documents_counter/:user_id")
-  .get(documents_controller.get_documents_counter);
+  .get(auth, documents_controller.get_documents_counter);
 
 module.exports = router;

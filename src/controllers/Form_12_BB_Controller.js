@@ -30,7 +30,6 @@ exports.update_form_12_bb_controller_by_id = async (req, res) => {
 exports.get_form_12_bb_controller = async (req, res) => {
   try {
     const result = await TaxForm.find();
-
     res.status(201).send(result);
   } catch (error) {
     res.status(404).send({ message: error });

@@ -47,11 +47,9 @@ const Zoho_Employee_Schema = new mongoose.Schema({
   "Date of Joining": String,
   Extension: String,
   "Reporting Manager": String,
-
   on_boarding_status: { type: Boolean },
   initiate_on_boarding_status: { type: Boolean },
   initiate_off_boarding_status: { type: Boolean },
-
   off_boarding_status: { type: Boolean },
   creation_date: {
     type: Date,
@@ -84,7 +82,6 @@ Zoho_Employee_Schema.statics.generateCookie = async function (req, res, token) {
       secure: false,
     };
     const cookie = res.cookie("Access_Token", token, cookieOptions).status(201);
-
     return cookie;
   } catch (err) {
     res.send(err);

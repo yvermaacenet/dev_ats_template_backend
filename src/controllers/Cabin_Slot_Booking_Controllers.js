@@ -11,7 +11,6 @@ exports.get_all_cabin_slot_booking = async (req, res) => {
 };
 exports.get_cabin_slot_booking = async (req, res) => {
   const getCableTblsData = await Cabin_Model.find({ status: true });
-
   const allresult = await Cabin_Slot_Booking_Model.find({
     cabin_id: getCableTblsData.map((val) => val._id),
   });
@@ -30,7 +29,6 @@ exports.get_cabin_slot_booking_by_location = async (req, res) => {
   const result = await Cabin_Slot_Booking_Model.find({
     location: req.params.location,
   });
-
   if (req.params.location === "all_location") {
     res.status(201).send(allresult);
   } else {

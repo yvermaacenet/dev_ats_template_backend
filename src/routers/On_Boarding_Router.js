@@ -9,7 +9,7 @@ router
 router
   .route("/on_boarding/:_id")
   .get(auth, on_boarding_controller.get_on_boarding_by_id);
-router.route("/on_boarding").get(on_boarding_controller.get_on_boarding);
+router.route("/on_boarding").get(auth, on_boarding_controller.get_on_boarding);
 router
   .route("/on_boarding/:_id")
   .put(auth, on_boarding_controller.update_on_boarding);
