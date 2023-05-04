@@ -11,5 +11,5 @@ router
 router.route("/get_zoho_data").get(auth, zoho_controller.get_zoho_data);
 router
   .route("/compare_data_between_zoho_and_database")
-  .post(zoho_controller.compare_data_between_zoho_and_database);
+  .post(auth, zoho_controller.compare_data_between_zoho_and_database);
 module.exports = router;

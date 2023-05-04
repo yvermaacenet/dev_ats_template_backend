@@ -27,15 +27,12 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
             },
           }
         );
-        // if (response2?.data?.Email === "system@acenet.io") {
         const envData = fs.readFileSync(".env", "utf8");
         const newEnvData = envData.replace(
           /REFRENCE_TOKEN\s*=\s*".*"/,
           `REFRENCE_TOKEN="${response?.data?.refresh_token}"`
         );
         fs.writeFileSync(".env", newEnvData);
-        // }
-        // console.log("response2", response2.data);
         const userDetails = await Zoho_Model?.find({
           "Email address": response2?.data?.Email,
         }).select({
@@ -49,7 +46,6 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
           Department: 1,
           Photo: 1,
         });
-        // console.log("userDetails", userDetails[0]?._id);
         const generate_auth_token = await Zoho_Model.generateAuthToken(
           userDetails[0]?._id.toString()
         );
@@ -58,7 +54,6 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
           res,
           generate_auth_token
         );
-        // console.log("tokens", tokens);
         res.send({
           name: userDetails[0]["First Name"],
           email: userDetails[0]["Email address"],
@@ -94,9 +89,7 @@ exports.compare_data_between_zoho_and_database = async (req, res) => {
           },
         }
       );
-      // console.log(record?.data);
       const userDetails = await Zoho_Model?.find();
-      // console.log("userDetails");
 
       const gettingDataForUpdateByEmail = [];
       function compareData(obj1, obj2) {

@@ -138,18 +138,6 @@ const User_Schema = mongoose.Schema({
       }
     },
   },
-  password: {
-    type: String,
-    // lowercase: true,
-    trim: true,
-    // minLength: [8, "Minimun 2 Letters"],
-    // maxLength: [20, "Maximum 20 Letters"],
-    // validate(value) {
-    //   if (!validator.isAlpha(value)) {
-    //     throw new Error("Name is inValid");
-    //   }
-    // },
-  },
   creation_date: {
     type: Date,
     default: Date.now,
@@ -176,9 +164,6 @@ User_Schema.statics.generateAuthToken = async function (_id) {
 // <!=============== Generate Cookies ====================>
 
 User_Schema.statics.generateCookie = async function (req, res, token) {
-  // console.log("req", req);
-  // console.log("res", res);
-  // console.log("token", token);
   try {
     const cookieOptions = {
       sameSite: "strict",
@@ -188,7 +173,6 @@ User_Schema.statics.generateCookie = async function (req, res, token) {
       secure: true,
     };
     const cookie = res.cookie("Access_Token", token, cookieOptions).status(202);
-    // console.log("cookie", cookie);
     return cookie;
   } catch (err) {
     res.send(err);

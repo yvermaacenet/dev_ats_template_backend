@@ -27,7 +27,6 @@ exports.get_form_flexi_controller = async (req, res) => {
     const result = await Form_Flexi_Model.find();
     res.status(201).send(result);
   } catch (error) {
-    // console.log(error);
     res.status(404).send({ message: error });
   }
 };
@@ -38,7 +37,6 @@ exports.get_form_flexi_controller_by_id = async (req, res) => {
     }).select({ _id: 0 });
     res.json(employees);
   } catch (error) {
-    // console.log(error);
     res.status(404).send({ message: error });
   }
 };

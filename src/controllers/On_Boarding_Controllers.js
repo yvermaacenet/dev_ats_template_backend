@@ -9,14 +9,8 @@ exports.post_on_boarding = async (req, res) => {
     });
     res.status(201).send({ message: "created" });
   } catch (error) {
-    // console.log(error);
     res.status(404).send({ message: error });
   }
-  // const token = await Admin_Model.generateAuthToken(verifiedToken._id);
-  // const cookie = await Admin_Model.generateCookie(req, res, token);
-  // await Admin_Model.updateData(verifiedToken._id, {
-  //   token,
-  // });
 };
 exports.get_on_boarding = async (req, res) => {
   try {
@@ -29,7 +23,6 @@ exports.get_on_boarding = async (req, res) => {
     });
     res.status(201).send(get_on_boarding_list);
   } catch (error) {
-    // console.log(error);
     res.status(404).send({ message: error });
   }
 };
@@ -52,7 +45,6 @@ exports.get_on_boarding_by_id = async (req, res) => {
 };
 exports.update_on_boarding = async (req, res) => {
   const _id = req.params._id;
-  // console.log("req.body", _id, req.body);
   try {
     await On_Boarding_Model.findByIdAndUpdate(
       { _id },
@@ -80,29 +72,8 @@ exports.update_on_boarding = async (req, res) => {
       );
     }
 
-    // try {
-    //   // req.body.hr_on_boarding_status === true &&
-    //   //   req.body.finance_on_boarding_status === true &&
-    //   //   req.body.management_on_boarding_status === true &&
-    //   //   (await Zoho_Model.findByIdAndUpdate(
-    //   //     { _id: user_id },
-    //   //     {
-    //   //       $set: { on_boarding_status: true },
-    //   //     },
-    //   //     { new: true }
-    //   //   ));
-    //   res.status(201).send({ message: "updated" });
-    // } catch (error) {
-    //   res.status(404).send({ message: error });
-    // }
     res.status(201).send({ message: "updated" });
   } catch (error) {
-    // console.log(error);
     res.status(404).send({ message: error });
   }
-  // const token = await Admin_Model.generateAuthToken(verifiedToken._id);
-  // const cookie = await Admin_Model.generateCookie(req, res, token);
-  // await Admin_Model.updateData(verifiedToken._id, {
-  //   token,
-  // });
 };

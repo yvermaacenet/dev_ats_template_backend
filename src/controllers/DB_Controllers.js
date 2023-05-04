@@ -21,7 +21,6 @@ exports.db_backup = async (req, res) => {
         return;
       }
       if (stdout) {
-        // console.error(`result: ${stderr}`);
         console.log(`stdout:`, stdout);
         return;
       }
@@ -45,31 +44,3 @@ exports.db_backup = async (req, res) => {
     res.status(400).send(error);
   }
 };
-// function downloadDatabase(dbName, collectionName, downloadTime) {
-//   mongoose.connect('mongodb://localhost/' + dbName, { useNewUrlParser: true });
-
-//   const currentDate = new Date();
-//   const timeDifference = downloadTime - currentDate.getTime();
-//   if (timeDifference < 0) {
-//      timeDifference += 24 * 60 * 60 * 1000;
-//   }
-
-//   setTimeout(() => {
-//      const fs = require('fs');
-
-//      const collectionData = mongoose.model(collectionName);
-//      collectionData.find().lean().exec(function(err, data) {
-//         if (err) {
-//            console.log(err);
-//         } else {
-//            fs.writeFile(collectionName + '.json', JSON.stringify(data), function(err) {
-//               if (err) {
-//                  console.log(err);
-//               } else {
-//                  console.log('Database downloaded successfully!');
-//               }
-//            });
-//         }
-//      });
-//   }, timeDifference);
-// }

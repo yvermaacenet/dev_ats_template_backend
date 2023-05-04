@@ -30,11 +30,7 @@ const Zoho_Employee_Schema = new mongoose.Schema({
   "Last Name": String,
   Location: String,
   "Zoho Role": String,
-  // role: [{ type: { value: Number, name: String } }],
-  // password: {
-  //   type: String,
-  //   trim: true,
-  // },
+
   "Added Time": String,
   createdTime: String,
   "Acenet Role": String,
@@ -51,11 +47,9 @@ const Zoho_Employee_Schema = new mongoose.Schema({
   "Date of Joining": String,
   Extension: String,
   "Reporting Manager": String,
-  // on_boarding_steper_counter: { type: Number },
   on_boarding_status: { type: Boolean },
   initiate_on_boarding_status: { type: Boolean },
   initiate_off_boarding_status: { type: Boolean },
-  // off_boarding_steper_counter: { type: Number },
   off_boarding_status: { type: Boolean },
   creation_date: {
     type: Date,
@@ -81,9 +75,6 @@ Zoho_Employee_Schema.statics.generateAuthToken = async function (_id) {
 // <!=============== Generate Cookies ====================>
 
 Zoho_Employee_Schema.statics.generateCookie = async function (req, res, token) {
-  // console.log("req", req);
-  // console.log("res", res);
-  // console.log("token", token);
   try {
     const cookieOptions = {
       sameSite: "strict",
@@ -93,7 +84,6 @@ Zoho_Employee_Schema.statics.generateCookie = async function (req, res, token) {
       secure: false,
     };
     const cookie = res.cookie("Access_Token", token, cookieOptions).status(201);
-    // console.log("cookie", cookie);
     return cookie;
   } catch (err) {
     res.send(err);
@@ -115,4 +105,3 @@ const Zoho_Model = new mongoose.model(
 );
 
 module.exports = Zoho_Model;
-// module.exports = mongoose.model("ZohoEmployee", Zoho_Employee_Schema);
