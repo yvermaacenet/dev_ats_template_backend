@@ -45,6 +45,7 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
           "Acenet Role": 1,
           Department: 1,
           Photo: 1,
+          "Personal Mobile Number": 1,
         });
         const generate_auth_token = await Zoho_Model.generateAuthToken(
           userDetails[0]?._id.toString()
@@ -62,6 +63,7 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
           emp_id: userDetails[0]["Employee ID"],
           department: userDetails[0]?.Department,
           photo: userDetails[0]?.Photo,
+          phone: userDetails[0]["Personal Mobile Number"],
           zoho_role:
             userDetails[0]["Acenet Role"] === ""
               ? "Team member"
