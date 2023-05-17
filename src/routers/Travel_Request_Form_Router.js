@@ -6,7 +6,7 @@ const router = new express.Router();
 
 router
   .route("/raise_travel_request")
-  .post(auth, travel_request_controller.post_travel_request);
+  .post(travel_request_controller.post_travel_request);
 router
   .route("/all_travel_request")
   .get(auth, travel_request_controller.get_travel_request);

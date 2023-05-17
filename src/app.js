@@ -30,6 +30,7 @@ cron.schedule("02 16 * * *", () => {
   // db_controller.db_backup();
 });
 
+// zoho_controller.compare_data_between_zoho_and_database();
 const User_Router = require("./routers/User_Router");
 const Cabin_Router = require("./routers/Cabin_Router");
 const Cabin_Slot_Booking_Router = require("./routers/Cabin_Slot_Booking_Router");

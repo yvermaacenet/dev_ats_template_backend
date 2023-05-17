@@ -9,6 +9,7 @@ const Cabin_Slot_Booking_Schema = mongoose.Schema({
   user_id: { type: String },
   description: { type: String },
   location: { type: String },
+  owner: { type: String },
   creation_date: {
     type: Date,
     default: Date.now,
