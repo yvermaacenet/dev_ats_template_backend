@@ -7,6 +7,31 @@ exports.post_on_boarding = async (req, res) => {
       ...req.body,
       user_id: _id,
     });
+
+    if (
+      req.body.hr_on_boarding_status === true &&
+      req.body.finance_on_boarding_status === true &&
+      req.body.management_on_boarding_status === true
+    ) {
+      await Zoho_Model.findByIdAndUpdate(
+        { _id },
+        {
+          $set: { on_boarding_status: true, initiate_on_boarding_status: true },
+        },
+        { new: true }
+      );
+    } else {
+      await Zoho_Model.findByIdAndUpdate(
+        { _id },
+        {
+          $set: {
+            on_boarding_status: false,
+            initiate_on_boarding_status: true,
+          },
+        },
+        { new: true }
+      );
+    }
     res.status(201).send({ message: "created" });
   } catch (error) {
     res.status(404).send({ message: error });

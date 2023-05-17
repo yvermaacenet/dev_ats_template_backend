@@ -30,7 +30,6 @@ const Zoho_Employee_Schema = new mongoose.Schema({
   "Last Name": String,
   Location: String,
   "Zoho Role": String,
-
   "Added Time": String,
   createdTime: String,
   "Acenet Role": String,
@@ -53,7 +52,7 @@ const Zoho_Employee_Schema = new mongoose.Schema({
   off_boarding_status: { type: Boolean },
   creation_date: {
     type: Date,
-    default: "2023-05-01T14:50:52.894+00:00",
+    default: Date.now,
   },
 });
 
@@ -63,7 +62,7 @@ Zoho_Employee_Schema.statics.generateAuthToken = async function (_id) {
       { _id },
       process.env.SECRET_KEY,
       {
-        expiresIn: "1h",
+        expiresIn: "2h",
       }
     );
     return generate_auth_token;
