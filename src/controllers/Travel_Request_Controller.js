@@ -1,5 +1,5 @@
 const auth = require("../middleware/auth");
-const Travel_Request_Form_Model = require("../models/TravelRequest_Model");
+const Travel_Request_Form_Model = require("../models/Travel_Request_Model");
 // <!=============== Cabin   ====================>
 exports.post_travel_request = async (req, res) => {
   try {

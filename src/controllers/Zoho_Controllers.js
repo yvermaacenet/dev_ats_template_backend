@@ -37,6 +37,7 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
           "Email address": response2?.data?.Email,
         }).select({
           "First Name": 1,
+          "Last Name": 1,
           "Email address": 1,
           _id: 1,
           "Employee ID": 1,
@@ -56,7 +57,7 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
           generate_auth_token
         );
         res.send({
-          name: userDetails[0]["First Name"],
+          name: `${userDetails[0]["First Name"]} ${userDetails[0]["Last Name"]}`,
           email: userDetails[0]["Email address"],
           message: "loggedin successfully",
           user_id: userDetails[0]?._id,
@@ -92,7 +93,7 @@ exports.compare_data_between_zoho_and_database = async (req, res) => {
         }
       );
       const userDetails = await Zoho_Model?.find();
-
+      console.log(record);
       const gettingDataForUpdateByEmail = [];
       function compareData(obj1, obj2) {
         var resp1 = {};
