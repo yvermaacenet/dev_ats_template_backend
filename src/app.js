@@ -22,7 +22,7 @@ app.use(
 cron.schedule("0 12 * * *", () => {
   console.log("zoho data fetch at 12:00 AM");
 });
-
+// zoho_controller.compare_data_between_zoho_and_database();
 cron.schedule("02 16 * * *", () => {
   console.log(
     "Acenet workflow data base download at 00:00 on every 10th day-of-month"

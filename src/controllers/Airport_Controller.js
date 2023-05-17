@@ -10,7 +10,7 @@ exports.get_airport = async (req, res) => {
       ...new Set(getCountry.map((item) => item.country_code)),
     ];
 
-    console.log("uniqueCountryCodes", uniqueCountryCodes);
+    // console.log("uniqueCountryCodes", uniqueCountryCodes);
     const result = await Airport_Model.find();
 
     res.status(201).send(result);

@@ -18,6 +18,7 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
     if (code) {
       const authUrl = `${process.env.ZOHO_DOMAIN}/v2/token?grant_type=${process.env.GRANT_TYPE}&client_id=${process.env.ClIENT_ID}&client_secret=${process.env.ClIENT_SECRET}&redirect_uri=${process.env.REDIRECT_URL}&code=${code}`;
       const response = await axios.post(authUrl);
+      // console.log("response", response);
       if (response?.data?.access_token) {
         const response2 = await axios.get(
           "https://accounts.zoho.in/oauth/user/info",
@@ -50,6 +51,7 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
         const generate_auth_token = await Zoho_Model.generateAuthToken(
           userDetails[0]?._id.toString()
         );
+        // console.log("generate_auth_token", generate_auth_token);
         const cookie = await Zoho_Model.generateCookie(
           req,
           res,
@@ -140,8 +142,11 @@ exports.compare_data_between_zoho_and_database = async (req, res) => {
       }
       if (newData) {
         Zoho_Model.create(newData);
+        res
+          .status(200)
+          .send({ message: "zoho data has been refresed successfully" });
       }
-      console.log("zoho data fetch at 12:00 AM");
+      console.log("zoho data fetch when click on button");
     }
   } catch (error) {
     console.log("error", error);

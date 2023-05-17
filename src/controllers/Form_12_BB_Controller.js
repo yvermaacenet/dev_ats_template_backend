@@ -15,13 +15,14 @@ exports.form_12_bb_controller = async (req, res) => {
   }
 };
 exports.update_form_12_bb_controller_by_id = async (req, res) => {
+  console.log(req.body);
   try {
     await Form_12_BB_Controller.findByIdAndUpdate(
       { _id: req.params._id },
       { $set: req.body },
       { new: true }
     );
-    res.status(201).json({ message: "Form has been submitted" });
+    res.status(201).json({ message: "Form has been saved" });
   } catch (error) {
     res.status(404).send({ message: error });
   }

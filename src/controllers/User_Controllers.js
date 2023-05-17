@@ -21,10 +21,12 @@ exports.get_user_list_by_status_code = async (req, res) => {
 
   try {
     const active_user_list = await Zoho_Model.find({
-      "Employee Status": "Active",
-    }).select({
-      token: 0,
-    });
+      "First Name": { $nin: ["accounts", "System"] },
+    })
+      .sort({ "First Name": 1 })
+      .select({
+        token: 0,
+      });
 
     const deactive_user_list = await Zoho_Model.find({
       $or: [
