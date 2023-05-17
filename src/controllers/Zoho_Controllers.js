@@ -57,7 +57,7 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
           generate_auth_token
         );
         res.send({
-          name: `${userDetails[0]["First Name"]} ${userDetails[0]["Last Name"]}`,
+          name: `${userDetails[0]["First Name"]}`,
           email: userDetails[0]["Email address"],
           message: "loggedin successfully",
           user_id: userDetails[0]?._id,
