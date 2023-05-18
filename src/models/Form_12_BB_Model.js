@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Define the schema
-const taxFormSchema = new Schema({
+const Form_12_BB_Schema = new Schema({
   name: String,
   father_name: String,
   place: String,
@@ -47,6 +47,6 @@ const taxFormSchema = new Schema({
 });
 
 // Create the model
-const TaxForm = mongoose.model("Form_12_BB", taxFormSchema);
+const Form_12_BB_Model = mongoose.model("Form_12_BB_tbl", Form_12_BB_Schema);
 
-module.exports = TaxForm;
+module.exports = Form_12_BB_Model;

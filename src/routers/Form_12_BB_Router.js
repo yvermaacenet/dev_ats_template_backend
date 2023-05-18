@@ -9,7 +9,7 @@ router
   .post(auth, Form_12_BB_Controller.form_12_bb_controller);
 router
   .route("/form_12_bb/:_id")
-  .put(auth, Form_12_BB_Controller.update_form_12_bb_controller_by_id);
+  .post(auth, Form_12_BB_Controller.update_form_12_bb_controller_by_id);
 router
   .route("/form_12_bb")
   .get(auth, Form_12_BB_Controller.get_form_12_bb_controller);

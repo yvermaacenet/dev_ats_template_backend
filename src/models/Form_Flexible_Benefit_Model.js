@@ -3,7 +3,7 @@ const { boolean } = require("webidl-conversions");
 const Schema = mongoose.Schema;
 
 // Define the schema
-const flexiBenefitFormSchema = new Schema({
+const Form_Flexi_Benefit_Form_Schema = new Schema({
   name: String,
   email: String,
   emp_id: String,
@@ -27,9 +27,9 @@ const flexiBenefitFormSchema = new Schema({
 });
 
 // Create the model
-const Flexible_Benefit = mongoose.model(
-  "Flexible Benefit Form",
-  flexiBenefitFormSchema
+const Form_Flexi_Benefit_Form_Model = mongoose.model(
+  "form_flexible_benefit_form_tbl",
+  Form_Flexi_Benefit_Form_Schema
 );
 
-module.exports = Flexible_Benefit;
+module.exports = Form_Flexi_Benefit_Form_Model;
