@@ -43,7 +43,7 @@ exports.update_form_12_bb_controller_by_id = async (req, res) => {
 
 exports.get_form_12_bb_controller = async (req, res) => {
   try {
-    const result = await TaxForm.find();
+    const result = await Form_12_BB_Model.find();
     res.status(201).send(result);
   } catch (error) {
     res.status(404).send({ message: error });
@@ -51,7 +51,9 @@ exports.get_form_12_bb_controller = async (req, res) => {
 };
 exports.get_form_12_bb_controller_by_id = async (req, res) => {
   try {
-    const employees = await TaxForm.find({ user_id: req?.params?._id });
+    const employees = await Form_12_BB_Model.find({
+      user_id: req?.params?._id,
+    });
     res.json(employees);
   } catch (error) {
     res.status(404).send({ message: error });
