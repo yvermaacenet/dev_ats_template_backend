@@ -28,8 +28,8 @@ exports.post_off_boarding = async (req, res) => {
         { _id },
         {
           $set: {
-            on_boarding_status: false,
-            initiate_on_boarding_status: true,
+            off_boarding_status: false,
+            initiate_off_boarding_status: true,
           },
         },
         { new: true }
@@ -79,16 +79,24 @@ exports.update_off_boarding = async (req, res) => {
     ) {
       await Zoho_Model.findByIdAndUpdate(
         { _id: req.body.employee_id },
+
         {
-          $set: { off_boarding_status: true },
+          $set: {
+            off_boarding_status: true,
+            initiate_off_boarding_status: true,
+          },
         },
         { new: true }
       );
     } else {
       await Zoho_Model.findByIdAndUpdate(
         { _id: req.body.employee_id },
+
         {
-          $set: { off_boarding_status: false },
+          $set: {
+            off_boarding_status: false,
+            initiate_off_boarding_status: true,
+          },
         },
         { new: true }
       );
