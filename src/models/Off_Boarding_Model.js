@@ -32,6 +32,7 @@ const Off_Boarding_Schema = mongoose.Schema({
     {
       type: {
         user_id: mongoose.Schema.Types.ObjectId,
+        user_name: { type: String },
         updated_data: { type: Object },
         updated_date: { type: Date, default: Date.now() },
       },
