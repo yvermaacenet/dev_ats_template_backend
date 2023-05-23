@@ -52,7 +52,7 @@ exports.get_travel_request_by_email_id = async (req, res) => {
   // console.log(req.params.email_id);
   try {
     const data = await Travel_Request_Form_Model.find({
-      email: req.params.email_id,
+      "employee.email": req.params.email_id,
     });
     // console.log(data);
     res.status(201).send(data);
