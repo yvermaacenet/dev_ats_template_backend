@@ -1,9 +1,11 @@
 const On_Boarding_Model = require("../models/On_Boarding_Model");
 const Zoho_Model = require("../models/Zoho_Model");
 
+// <!=============== User ====================>
 exports.user_update = async (req, res) => {
   const { _id } = req.params;
 
+  // <!================  Update User   =============>
   await Zoho_Model.findByIdAndUpdate(
     { _id },
     {
@@ -19,10 +21,12 @@ exports.get_user_list_by_status_code = async (req, res) => {
 
   try {
     const active_user_list = await Zoho_Model.find({
-      "Employee Status": "Active",
-    }).select({
-      token: 0,
-    });
+      "First Name": { $nin: ["accounts", "System"] },
+    })
+      .sort({ "First Name": 1 })
+      .select({
+        token: 0,
+      });
 
     const deactive_user_list = await Zoho_Model.find({
       $or: [
@@ -48,11 +52,8 @@ exports.get_user_list_by_status_code = async (req, res) => {
     });
     const pending_offboarding_users_list = await Zoho_Model.find({
       $and: [
-        {
-          creation_date: { $gte: new Date(process.env.SPECIFIC_DATE) },
-        },
+        { initiate_off_boarding_status: true },
         { off_boarding_status: false },
-        //....
       ],
     }).select({
       token: 0,

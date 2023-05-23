@@ -8,12 +8,6 @@ exports.get_documents_counter = async (req, res) => {
     const Active_Users = await Zoho_Model.find({
       "Employee Status": "Active",
     }).countDocuments();
-    // const Active_User_Creation_Date = await (
-    //   await Zoho_Model.find().select({
-    //     creation_date: 1,
-    //     _id: 0,
-    //   })
-    // ).pop();
 
     const Deactive_Users = await Zoho_Model.find({
       $or: [
@@ -58,18 +52,6 @@ exports.get_documents_counter = async (req, res) => {
       user_id: req.params.user_id,
     }).countDocuments();
 
-    // const Cabin_Booking_Creation_Date = await (
-    //   await Cabin_Slot_Booking_Model.find().select({
-    //     creation_date: 1,
-    //     _id: 0,
-    //   })
-    // ).pop();
-    // const Total_Users_By_Finance_Department = await User_Model.find({
-    //   $or: [{ on_boarding_steper_counter: { $gte: 3 } }],
-    // }).countDocuments();
-    // const Total_Users_By_Managment_Department = await User_Model.find({
-    //   $or: [{ on_boarding_steper_counter: { $gte: 5 } }],
-    // }).countDocuments();
     res.status(201).send({
       Total_Users,
       Active_Users,
@@ -78,36 +60,10 @@ exports.get_documents_counter = async (req, res) => {
       Completed_Onboarding,
       Pending_Offboarding,
       Completed_Offboarding,
-      // Active_User_Creation_Date,
       Total_Cabin_Booking,
       Total_Cabin_Booking_By_User_ID,
-      // Cabin_Booking_Creation_Date,
-      //   Total_Users_By_Finance_Department,
-      //   Total_Users_By_Managment_Department,
     });
   } catch (error) {
-    // console.log(error);
     res.status(404).send({ message: error });
   }
 };
-// const Pending_Offboarding = await Zoho_Model.find(
-//   {
-//     // $or: [
-//     //   {
-//     //     creation_date: { $gt: new Date() },
-//     //   },
-//     // {
-//     $and: [
-//       {
-//         creation_date: { $gt: new Date() },
-//       },
-
-//       {
-//         off_boarding_status: false,
-//       },
-//       // { off_boarding_status: undefined },
-//     ],
-//   }
-//   //   ],
-//   // }
-// ).countDocuments();

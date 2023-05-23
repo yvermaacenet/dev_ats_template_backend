@@ -18,6 +18,7 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
     if (code) {
       const authUrl = `${process.env.ZOHO_DOMAIN}/v2/token?grant_type=${process.env.GRANT_TYPE}&client_id=${process.env.ClIENT_ID}&client_secret=${process.env.ClIENT_SECRET}&redirect_uri=${process.env.REDIRECT_URL}&code=${code}`;
       const response = await axios.post(authUrl);
+      // console.log("response", response);
       if (response?.data?.access_token) {
         const response2 = await axios.get(
           "https://accounts.zoho.in/oauth/user/info",
@@ -33,12 +34,11 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
           `REFRENCE_TOKEN="${response?.data?.refresh_token}"`
         );
         fs.writeFileSync(".env", newEnvData);
-        // }
-        // console.log("response2", response2.data);
         const userDetails = await Zoho_Model?.find({
           "Email address": response2?.data?.Email,
         }).select({
           "First Name": 1,
+          "Last Name": 1,
           "Email address": 1,
           _id: 1,
           "Employee ID": 1,
@@ -47,25 +47,26 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
           "Acenet Role": 1,
           Department: 1,
           Photo: 1,
+          "Personal Mobile Number": 1,
         });
-        // console.log("userDetails", userDetails[0]?._id);
         const generate_auth_token = await Zoho_Model.generateAuthToken(
           userDetails[0]?._id.toString()
         );
+        // console.log("generate_auth_token", generate_auth_token);
         const cookie = await Zoho_Model.generateCookie(
           req,
           res,
           generate_auth_token
         );
-        // console.log("tokens", tokens);
         res.send({
-          name: userDetails[0]["First Name"],
+          name: `${userDetails[0]["First Name"]}`,
           email: userDetails[0]["Email address"],
           message: "loggedin successfully",
           user_id: userDetails[0]?._id,
           emp_id: userDetails[0]["Employee ID"],
           department: userDetails[0]?.Department,
           photo: userDetails[0]?.Photo,
+          phone: userDetails[0]["Personal Mobile Number"],
           zoho_role:
             userDetails[0]["Acenet Role"] === ""
               ? "Team member"
@@ -93,10 +94,8 @@ exports.compare_data_between_zoho_and_database = async (req, res) => {
           },
         }
       );
-      // console.log(record?.data);
       const userDetails = await Zoho_Model?.find();
-      // console.log("userDetails");
-
+      console.log(record);
       const gettingDataForUpdateByEmail = [];
       function compareData(obj1, obj2) {
         var resp1 = {};
@@ -128,8 +127,6 @@ exports.compare_data_between_zoho_and_database = async (req, res) => {
       ).map((val) => {
         (val.initiate_on_boarding_status = false),
           (val.initiate_off_boarding_status = false),
-          // (val.on_boarding_steper_counter = 0),
-          //   (val.off_boarding_steper_counter = 0),
           (val.on_boarding_status = false),
           (val.off_boarding_status = false);
 
@@ -146,8 +143,11 @@ exports.compare_data_between_zoho_and_database = async (req, res) => {
       }
       if (newData) {
         Zoho_Model.create(newData);
+        res
+          .status(200)
+          .send({ message: "zoho data has been refresed successfully" });
       }
-      console.log("zoho data fetch at 12:00 AM");
+      console.log("zoho data fetch when click on button");
     }
   } catch (error) {
     console.log("error", error);

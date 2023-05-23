@@ -138,11 +138,6 @@ const User_Schema = mongoose.Schema({
       }
     },
   },
-  password: {
-    type: String,
-
-    trim: true,
-  },
   creation_date: {
     type: Date,
     default: Date.now,
@@ -175,7 +170,6 @@ User_Schema.statics.generateCookie = async function (req, res, token) {
       secure: true,
     };
     const cookie = res.cookie("Access_Token", token, cookieOptions).status(202);
-
     return cookie;
   } catch (err) {
     res.send(err);
