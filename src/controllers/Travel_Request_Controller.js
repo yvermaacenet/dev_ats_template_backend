@@ -48,3 +48,12 @@ exports.get_travel_request_by_email_id = async (req, res) => {
     res.status(404).send({ message: error });
   }
 };
+exports.revoke_travel_request = async (req, res) => {
+  try {
+    await Travel_Request_Form_Model.findByIdAndDelete({ _id: req.params._id });
+
+    res.status(201).send("Deleted Sucessfully");
+  } catch (error) {
+    res.status(404).send({ message: error });
+  }
+};

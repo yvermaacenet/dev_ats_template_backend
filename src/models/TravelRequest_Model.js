@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Travel_Request_Form_Schema = mongoose.Schema(
   {
     managers_approval: String,
+    management_approval: String,
     reporting_manager: String,
     remarks: String,
     employee: {
