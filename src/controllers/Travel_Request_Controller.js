@@ -1,10 +1,10 @@
 const auth = require("../middleware/auth");
-const Travel_Request_Form_Model = require("../models/TravelRequest_Model");
+const Travel_Request_Form_Model = require("../models/Travel_Request_Model");
 // <!=============== Cabin   ====================>
 exports.post_travel_request = async (req, res) => {
   try {
     await Travel_Request_Form_Model.create(req.body);
-    res.status(201).send("updated");
+    res.status(201).send({ message: "Request Raised Successfully" });
   } catch (error) {
     res.status(404).send({ message: error });
   }

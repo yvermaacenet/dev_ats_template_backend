@@ -18,32 +18,34 @@ const Travel_Request_Form_Schema = mongoose.Schema(
     travel: {
       start_date: Date,
       end_date: Date,
-      // destination: Date,
       reason_for_travel: String,
     },
     flight: {
+      flight_travel: Boolean,
       flight_from_city: String,
       flight_to_city: String,
       flight_preferred_time: String,
       flight_class_preferred: String,
     },
-
     train: {
+      train_travel: Boolean,
       train_from_city: String,
       train_to_city: String,
       train_preferred_time: String,
       train_class_preferred: String,
     },
     hotel: {
+      hotel_travel: Boolean,
       hotel_city: String,
       hotel_checkin: Date,
       hotel_checkout: Date,
       hotel_number_of_rooms: Number,
     },
     other: {
-      name_of_travel: String,
-      from_location: String,
-      to_location: String,
+      other_travel: Boolean,
+      other_travel_type: String,
+      other_from_city: String,
+      other_to_city: String,
     },
   },
   { timestamps: true }
