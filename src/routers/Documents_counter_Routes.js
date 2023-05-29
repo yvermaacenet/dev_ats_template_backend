@@ -6,6 +6,9 @@ const documents_controller = require("../controllers/Documents_Controller");
 
 router
   .route("/documents_counter/:user_id")
-  .get(auth, documents_controller.get_documents_counter);
+  .get(documents_controller.get_documents_counter);
+router
+  .route("/notifications_counter/:reporting_manager/:acenet_role")
+  .get(documents_controller.get_notifications_counter);
 
 module.exports = router;

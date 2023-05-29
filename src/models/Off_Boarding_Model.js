@@ -7,6 +7,10 @@ const Off_Boarding_Schema = mongoose.Schema({
     unique: true,
     index: true,
   },
+  acceptance_of_resignation_and_last_date_communication_to_employee: {
+    type: Boolean,
+  },
+  appraisals_for_reportees: { type: Boolean },
   informed_client_on_exit: { type: Boolean },
   project_official_duties_handover: { type: Boolean },
   important_mails_transferred: { type: Boolean },
@@ -28,6 +32,8 @@ const Off_Boarding_Schema = mongoose.Schema({
   ghi_initiated: { type: Boolean },
   ghi_e_card_issued: { type: Boolean },
   steper_counter: { type: Number },
+  handover_complete: { type: Boolean },
+  eligible_for_rehire: { type: Boolean },
   updated_by: [
     {
       type: {

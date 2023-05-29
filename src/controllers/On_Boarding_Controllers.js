@@ -10,8 +10,7 @@ exports.post_on_boarding = async (req, res) => {
 
     if (
       req.body.hr_on_boarding_status === true &&
-      req.body.finance_on_boarding_status === true &&
-      req.body.management_on_boarding_status === true
+      req.body.finance_on_boarding_status === true
     ) {
       await Zoho_Model.findByIdAndUpdate(
         { _id },
@@ -44,7 +43,6 @@ exports.get_on_boarding = async (req, res) => {
       user_id: 1,
       hr_on_boarding_status: 1,
       finance_on_boarding_status: 1,
-      management_on_boarding_status: 1,
     });
     res.status(201).send(get_on_boarding_list);
   } catch (error) {
@@ -70,6 +68,10 @@ exports.get_on_boarding_by_id = async (req, res) => {
 };
 exports.update_on_boarding = async (req, res) => {
   const _id = req.params._id;
+  console.log(
+    req.body.hr_on_boarding_status,
+    req.body.finance_on_boarding_status
+  );
   try {
     await On_Boarding_Model.findByIdAndUpdate(
       { _id },
@@ -77,8 +79,7 @@ exports.update_on_boarding = async (req, res) => {
     );
     if (
       req.body.hr_on_boarding_status === true &&
-      req.body.finance_on_boarding_status === true &&
-      req.body.management_on_boarding_status === true
+      req.body.finance_on_boarding_status === true
     ) {
       await Zoho_Model.findByIdAndUpdate(
         { _id: req.body.user_id },

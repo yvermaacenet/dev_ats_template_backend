@@ -1,4 +1,5 @@
 const Cabin_Slot_Booking_Model = require("../models/Cabin_Slot_Booking_Model");
+const Travel_Request_Form_Model = require("../models/Travel_Request_Model");
 const User_Model = require("../models/User_Model");
 const Zoho_Model = require("../models/Zoho_Model");
 
@@ -63,6 +64,30 @@ exports.get_documents_counter = async (req, res) => {
       Total_Cabin_Booking,
       Total_Cabin_Booking_By_User_ID,
     });
+  } catch (error) {
+    res.status(404).send({ message: error });
+  }
+};
+exports.get_notifications_counter = async (req, res) => {
+  try {
+    if (req?.params?.acenet_role === "Management") {
+      const Total_Notification = await Travel_Request_Form_Model.find({
+        management_approval: "Pending",
+      }).countDocuments();
+      res.status(201).send({
+        Total_Notification,
+      });
+    } else {
+      const Total_Notification1 = await Travel_Request_Form_Model.find({
+        $and: [
+          { managers_approval: "Pending" },
+          { reporting_manager: req?.params?.reporting_manager },
+        ],
+      }).countDocuments();
+      res.status(201).send({
+        Total_Notification1,
+      });
+    }
   } catch (error) {
     res.status(404).send({ message: error });
   }
