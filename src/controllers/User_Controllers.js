@@ -82,33 +82,35 @@ exports.get_user_list_By_Id = async (req, res) => {
 exports.get_user_list_By_Role_Name = async (req, res) => {
   try {
     const user_details_admin = await Zoho_Model.find({
-      "Acenet Role": { $in: ["Admin"] },
+      "Acenet Role": "Admin",
     }).select({
       _id: 1,
     });
     const user_details_hr = await Zoho_Model.find({
-      "Acenet Role": { $in: ["Hr"] },
+      "Acenet Role": "Hr",
     }).select({
       _id: 1,
     });
     const user_details_finance = await Zoho_Model.find({
-      "Acenet Role": { $in: ["Finance"] },
+      "Acenet Role": "Finance",
     }).select({
       _id: 1,
     });
     const user_details_management = await Zoho_Model.find({
-      "Acenet Role": { $in: ["Management"] },
+      "Acenet Role": "Management",
     }).select({
       _id: 1,
     });
     const user_details_reporting_manager = await Zoho_Model.distinct(
       "Reporting Manager"
     );
-    const res1 = user_details_reporting_manager?.map((x) => x.slice(-2));
     const stringArrayForAdmin = [];
     const stringArrayForHR = [];
     const stringArrayForFinance = [];
     const stringArrayForManagement = [];
+    const stringArrayForReportingManager = user_details_reporting_manager?.map(
+      (x) => x.slice(-2)
+    );
     await user_details_admin.map((val) => stringArrayForAdmin.push(val._id));
     await user_details_hr.map((val) => stringArrayForHR.push(val._id));
     await user_details_finance.map((val) =>
@@ -122,7 +124,7 @@ exports.get_user_list_By_Role_Name = async (req, res) => {
       Hr: stringArrayForHR,
       Finance: stringArrayForFinance,
       Management: stringArrayForManagement,
-      Reporting_Manager: res1,
+      Reporting_Manager: stringArrayForReportingManager,
     });
   } catch (error) {
     res.status(400).send(error);
