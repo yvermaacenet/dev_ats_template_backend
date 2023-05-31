@@ -17,9 +17,9 @@ exports.get_cabin_slot_booking = async (req, res) => {
   const result = await Cabin_Slot_Booking_Model.find({
     cabin_id: req.params._id,
   });
-
+  console.log(result);
   if (req.params._id === "all") {
-    res.status(201).send(allresult);
+    res.status(201).send(result);
   } else {
     res.status(201).send(result);
   }
