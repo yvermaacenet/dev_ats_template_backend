@@ -40,9 +40,9 @@ exports.get_documents_counter = async (req, res) => {
     const Travel_Request_By_Manager_and_Management =
       req?.params?.acenet_role === "Management"
         ? await Travel_Request_Form_Model.find().countDocuments()
-        : await Travel_Request_Form_Model.find().countDocuments({
-            reporting_manager: req.params.reporting_manager,
-          });
+        : await Travel_Request_Form_Model.find({
+            reporting_manager_emp_id: req.params.reporting_manager_emp_id,
+          }).countDocuments();
     res.status(201).send({
       Active_Users,
       Pending_Onboarding,
