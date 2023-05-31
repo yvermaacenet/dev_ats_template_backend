@@ -9,6 +9,7 @@ const Travel_Request_Form_Schema = mongoose.Schema(
     employee: {
       name: String,
       email: String,
+      user_id: String,
       employee_id: String,
       phone: String,
       billable: String,
