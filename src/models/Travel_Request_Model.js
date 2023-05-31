@@ -4,7 +4,6 @@ const Travel_Request_Form_Schema = mongoose.Schema(
   {
     managers_approval: String,
     management_approval: String,
-    reporting_manager: String,
     remarks: String,
     employee: {
       name: String,
@@ -15,6 +14,7 @@ const Travel_Request_Form_Schema = mongoose.Schema(
       billable: String,
       project_id: String,
       reporting_manager: String,
+      reporting_manager_emp_id: String,
     },
     travel: {
       start_date: Date,
