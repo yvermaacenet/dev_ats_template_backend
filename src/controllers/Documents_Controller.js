@@ -6,7 +6,24 @@ const Zoho_Model = require("../models/Zoho_Model");
 exports.get_documents_counter = async (req, res) => {
   try {
     const Active_Users = await Zoho_Model.find({
-      "Employee Status": "Active",
+      $or: [
+        {
+          $and: [
+            {
+              creation_date: { $lte: new Date(process.env.SPECIFIC_DATE) },
+            },
+            {
+              initiate_on_boarding_status: false,
+            },
+            {
+              "First Name": { $nin: ["accounts", "System"] },
+            },
+          ],
+        },
+        {
+          on_boarding_status: true,
+        },
+      ],
     }).countDocuments();
 
     const Pending_Onboarding = await Zoho_Model.find({

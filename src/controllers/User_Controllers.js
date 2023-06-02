@@ -21,7 +21,25 @@ exports.get_user_list_by_status_code = async (req, res) => {
 
   try {
     const active_user_list = await Zoho_Model.find({
-      "First Name": { $nin: ["accounts", "System"] },
+      // "First Name": { $nin: ["accounts", "System"] },
+      $or: [
+        {
+          $and: [
+            {
+              creation_date: { $lte: new Date(process.env.SPECIFIC_DATE) },
+            },
+            {
+              initiate_on_boarding_status: false,
+            },
+            {
+              "First Name": { $nin: ["accounts", "System"] },
+            },
+          ],
+        },
+        {
+          on_boarding_status: true,
+        },
+      ],
     })
       .sort({ "First Name": 1 })
       .select({
