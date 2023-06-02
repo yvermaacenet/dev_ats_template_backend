@@ -9,9 +9,9 @@ exports.post_off_boarding = async (req, res) => {
       employee_id: _id,
     });
     if (
-      req.body.hr_off_boarding_status === true &&
-      req.body.finance_off_boarding_status === true &&
-      req.body.management_off_boarding_status === true
+      req.body.offboarding_hr.hr_off_boarding_status === true &&
+      req.body.offboarding_finance.finance_off_boarding_status === true &&
+      req.body.offboarding_management.management_off_boarding_status === true
     ) {
       await Zoho_Model.findByIdAndUpdate(
         { _id },
@@ -45,9 +45,9 @@ exports.get_off_boarding = async (req, res) => {
     const get_off_boarding_list = await Off_Boarding_Model.find().select({
       _id: 0,
       employee_id: 1,
-      hr_off_boarding_status: 1,
-      finance_off_boarding_status: 1,
-      management_off_boarding_status: 1,
+      "offboarding_hr.hr_off_boarding_status": 1,
+      "offboarding_finance.finance_off_boarding_status": 1,
+      "offboarding_management.management_off_boarding_status": 1,
     });
     res.status(201).send(get_off_boarding_list);
   } catch (error) {
@@ -73,9 +73,9 @@ exports.update_off_boarding = async (req, res) => {
       { $set: { ...req.body } }
     );
     if (
-      req.body.hr_off_boarding_status === true &&
-      req.body.finance_off_boarding_status === true &&
-      req.body.management_off_boarding_status === true
+      req.body.offboarding_hr.hr_off_boarding_status === true &&
+      req.body.offboarding_finance.finance_off_boarding_status === true &&
+      req.body.offboarding_management.management_off_boarding_status === true
     ) {
       await Zoho_Model.findByIdAndUpdate(
         { _id: req.body.employee_id },

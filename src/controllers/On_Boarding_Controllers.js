@@ -2,6 +2,7 @@ const On_Boarding_Model = require("../models/On_Boarding_Model");
 const Zoho_Model = require("../models/Zoho_Model");
 exports.post_on_boarding = async (req, res) => {
   const _id = req.params._id;
+  console.log(req.body);
   try {
     await On_Boarding_Model.create({
       ...req.body,
@@ -9,8 +10,8 @@ exports.post_on_boarding = async (req, res) => {
     });
 
     if (
-      req.body.hr_on_boarding_status === true &&
-      req.body.finance_on_boarding_status === true
+      req.body.hr.hr_on_boarding_status === true &&
+      req.body.finance.finance_on_boarding_status === true
     ) {
       await Zoho_Model.findByIdAndUpdate(
         { _id },
@@ -41,9 +42,10 @@ exports.get_on_boarding = async (req, res) => {
     const get_on_boarding_list = await On_Boarding_Model.find().select({
       _id: 0,
       user_id: 1,
-      hr_on_boarding_status: 1,
-      finance_on_boarding_status: 1,
+      "hr.hr_on_boarding_status": 1,
+      "finance.finance_on_boarding_status": 1,
     });
+
     res.status(201).send(get_on_boarding_list);
   } catch (error) {
     res.status(404).send({ message: error });
@@ -78,8 +80,8 @@ exports.update_on_boarding = async (req, res) => {
       { $set: { ...req.body } }
     );
     if (
-      req.body.hr_on_boarding_status === true &&
-      req.body.finance_on_boarding_status === true
+      req.body.hr.hr_on_boarding_status === true &&
+      req.body.finance.finance_on_boarding_status === true
     ) {
       await Zoho_Model.findByIdAndUpdate(
         { _id: req.body.user_id },

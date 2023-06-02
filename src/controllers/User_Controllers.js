@@ -52,19 +52,20 @@ exports.get_user_list_by_status_code = async (req, res) => {
     });
     const pending_offboarding_users_list = await Zoho_Model.find({
       $and: [
+        // { on_boarding_status: true },
         { initiate_off_boarding_status: true },
         { off_boarding_status: false },
       ],
     }).select({
       token: 0,
     });
-    if (req.params.status_code === "active_users") {
+    if (req.params.status_code === "active_employee") {
       res.status(201).send(active_user_list);
-    } else if (req.params.status_code === "deactive_users") {
+    } else if (req.params.status_code === "deactive_employee") {
       res.status(201).send(deactive_user_list);
-    } else if (req.params.status_code === "pending_onboarding_users") {
+    } else if (req.params.status_code === "pending_onboarding_employee") {
       res.status(201).send(pending_onboarding_users_list);
-    } else if (req.params.status_code === "pending_offboarding_users") {
+    } else if (req.params.status_code === "pending_offboarding_employee") {
       res.status(201).send(pending_offboarding_users_list);
     } else {
       res.status(201).send(active_user_list);
@@ -130,3 +131,18 @@ exports.get_user_list_By_Role_Name = async (req, res) => {
     res.status(400).send(error);
   }
 };
+// $or: [
+//   {
+//     $and: [
+//       {
+//         creation_date: { $lte: new Date(process.env.SPECIFIC_DATE) },
+//       },
+//       {
+//         initiate_on_boarding_status: false,
+//       },
+//     ],
+//   },
+//   {
+//     initiate_on_boarding_status: true,
+//   },
+// ],
