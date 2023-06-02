@@ -52,7 +52,7 @@ exports.get_user_list_by_status_code = async (req, res) => {
     });
     const pending_offboarding_users_list = await Zoho_Model.find({
       $and: [
-        { on_boarding_status: true },
+        // { on_boarding_status: true },
         { initiate_off_boarding_status: true },
         { off_boarding_status: false },
       ],
@@ -131,3 +131,18 @@ exports.get_user_list_By_Role_Name = async (req, res) => {
     res.status(400).send(error);
   }
 };
+// $or: [
+//   {
+//     $and: [
+//       {
+//         creation_date: { $lte: new Date(process.env.SPECIFIC_DATE) },
+//       },
+//       {
+//         initiate_on_boarding_status: false,
+//       },
+//     ],
+//   },
+//   {
+//     initiate_on_boarding_status: true,
+//   },
+// ],

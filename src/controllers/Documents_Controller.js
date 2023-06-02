@@ -22,7 +22,7 @@ exports.get_documents_counter = async (req, res) => {
 
     const Pending_Offboarding = await Zoho_Model.find({
       $and: [
-        { on_boarding_status: true },
+        // { on_boarding_status: true },
         {
           initiate_off_boarding_status: true,
         },
