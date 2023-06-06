@@ -105,7 +105,7 @@ exports.update_on_boarding = async (req, res) => {
 
 exports.post_on_boarding_by_status_code = async (req, res) => {
   // const _id = req.params._id;
-  // console.log(req.params);
+  // console.log(req?.params);
   // console.log(req.body.hr.hr_on_boarding_status);
   try {
     if (req?.params?._id !== "undefined") {
@@ -114,14 +114,28 @@ exports.post_on_boarding_by_status_code = async (req, res) => {
         { $set: { ...req.body } }
       );
       res.status(201).send({
-        message: req?.params?.status_code === "save" ? "Save" : "Update",
+        message:
+          req?.params?.status_code === "save"
+            ? "Onboarding form has been saved successfully!"
+            : req?.params?.status_code === "hr_onboarding_complete" &&
+              req?.body?.hr?.hr_on_boarding_status
+            ? "HR onboarding has been completed!"
+            : "Finance onboarding has been completed!",
       });
     } else {
       await On_Boarding_Model.create({
         ...req.body,
         user_id: req.params.user_id,
       });
-      res.status(201).send({ message: "Create" });
+      res.status(201).send({
+        message:
+          req?.params?.status_code === "save"
+            ? "Onboarding form has been saved successfully!"
+            : req?.params?.status_code === "hr_onboarding_complete" &&
+              req?.body?.hr?.hr_on_boarding_status
+            ? "HR onboarding has been completed!"
+            : "Finance onboarding has been completed!",
+      });
     }
     if (
       req?.params?.status_code === "hr_onboarding_complete" ||
