@@ -77,6 +77,7 @@ exports.get_user_list_by_status_code = async (req, res) => {
     }).select({
       token: 0,
     });
+
     if (req.params.status_code === "active_employee") {
       res.status(201).send(active_user_list);
     } else if (req.params.status_code === "deactive_employee") {
@@ -164,3 +165,8 @@ exports.get_user_list_By_Role_Name = async (req, res) => {
 //     initiate_on_boarding_status: true,
 //   },
 // ],
+
+exports.get_user_names = async (req, res) => {
+  const all_user_names = await Zoho_Model.find({}).select({ ownerName: 1 });
+  res.status(201).send(all_user_names);
+};

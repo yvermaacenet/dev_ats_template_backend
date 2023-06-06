@@ -12,4 +12,6 @@ router
 router
   .route("/get_user_list_by_role_name/")
   .get(auth, user_controller.get_user_list_By_Role_Name);
+
+router.route("/get_user_names/").get(user_controller.get_user_names);
 module.exports = router;
