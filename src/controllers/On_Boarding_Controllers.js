@@ -70,10 +70,7 @@ exports.get_on_boarding_by_id = async (req, res) => {
 };
 exports.update_on_boarding = async (req, res) => {
   const _id = req.params._id;
-  console.log(
-    req.body.hr_on_boarding_status,
-    req.body.finance_on_boarding_status
-  );
+
   try {
     await On_Boarding_Model.findByIdAndUpdate(
       { _id },
@@ -101,6 +98,67 @@ exports.update_on_boarding = async (req, res) => {
     }
 
     res.status(201).send({ message: "updated" });
+  } catch (error) {
+    res.status(404).send({ message: error });
+  }
+};
+
+exports.post_on_boarding_by_status_code = async (req, res) => {
+  // const _id = req.params._id;
+  // console.log(req.params);
+  // console.log(req.body.hr.hr_on_boarding_status);
+  try {
+    if (req?.params?._id !== "undefined") {
+      await On_Boarding_Model.findByIdAndUpdate(
+        { _id: req?.params?._id },
+        { $set: { ...req.body } }
+      );
+      res.status(201).send({
+        message: req?.params?.status_code === "save" ? "Save" : "Update",
+      });
+    } else {
+      await On_Boarding_Model.create({
+        ...req.body,
+        user_id: req.params.user_id,
+      });
+      res.status(201).send({ message: "Create" });
+    }
+    if (
+      req?.params?.status_code === "hr_onboarding_complete" ||
+      req?.params?.status_code === "finance_onboarding_complete"
+    ) {
+      // console.log(
+      //   "gg",
+      //   req.body.hr.hr_on_boarding_status,
+      //   req.body.finance.finance_on_boarding_status
+      // );
+      if (
+        req?.body?.hr?.hr_on_boarding_status === true &&
+        req?.body?.finance?.finance_on_boarding_status === true
+      ) {
+        await Zoho_Model.findByIdAndUpdate(
+          { _id: req.params.user_id },
+          {
+            $set: {
+              on_boarding_status: true,
+              initiate_on_boarding_status: true,
+            },
+          },
+          { new: true }
+        );
+      } else {
+        await Zoho_Model.findByIdAndUpdate(
+          { _id: req.params.user_id },
+          {
+            $set: {
+              on_boarding_status: false,
+              initiate_on_boarding_status: true,
+            },
+          },
+          { new: true }
+        );
+      }
+    }
   } catch (error) {
     res.status(404).send({ message: error });
   }
