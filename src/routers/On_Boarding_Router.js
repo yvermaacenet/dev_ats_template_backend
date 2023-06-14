@@ -13,5 +13,7 @@ router.route("/on_boarding").get(auth, on_boarding_controller.get_on_boarding);
 router
   .route("/on_boarding/:_id")
   .put(auth, on_boarding_controller.update_on_boarding);
-
+router
+  .route("/on_boarding/:status_code/:user_id/:_id")
+  .post(on_boarding_controller.post_on_boarding_by_status_code);
 module.exports = router;
