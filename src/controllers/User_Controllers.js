@@ -167,6 +167,23 @@ exports.get_user_list_By_Role_Name = async (req, res) => {
 // ],
 
 exports.get_user_names = async (req, res) => {
-  const all_user_names = await Zoho_Model.find({}).select({ ownerName: 1 });
+  const all_user_names = await Zoho_Model.find({}).select({
+    ownerName: 1,
+  });
+  res.status(201).send(all_user_names);
+};
+exports.get_employee_details_for_travel = async (req, res) => {
+  const emp_id = req.params.emp_id;
+  const all_user_names = await Zoho_Model.find({
+    ["Employee ID"]: emp_id,
+  }).select({
+    _id: 0,
+    ownerName: 1,
+    ["Employee ID"]: 1,
+    ["Personal Mobile Number"]: 1,
+    ["Date of Birth"]: 1,
+    Phone: 1,
+    ["Email address"]: 1,
+  });
   res.status(201).send(all_user_names);
 };

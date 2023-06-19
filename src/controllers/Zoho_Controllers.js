@@ -45,6 +45,7 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
           "Reporting Manager": 1,
           "Zoho Role": 1,
           ownerName: 1,
+          "Date of Birth": 1,
           "Acenet Role": 1,
           Department: 1,
           Photo: 1,
@@ -68,6 +69,7 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
           emp_id: userDetails[0]["Employee ID"],
           department: userDetails[0]?.Department,
           photo: userDetails[0]?.Photo,
+          dob: userDetails[0]["Date of Birth"],
           phone: userDetails[0]["Personal Mobile Number"],
           zoho_role:
             userDetails[0]["Acenet Role"] === ""
