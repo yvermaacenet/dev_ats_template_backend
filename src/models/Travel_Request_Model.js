@@ -4,29 +4,71 @@ const Travel_Request_Form_Schema = mongoose.Schema(
   {
     // managers_approval: String,
     management_approval: String,
+    created_by: String,
     remarks: String,
-    employee: {
-      name: String,
-      email: String,
-      user_id: String,
-      employee_id: String,
-      phone: String,
+    basicDetails: {
       billable: String,
-      project_id: String,
+      client_id: String,
       special_request: String,
+      project_id: String,
       reason_for_travel: String,
     },
-    travel_request: [
+
+    rows: [
       {
-        booking_for: Array,
-        travel_type: String,
-        travel_date: String,
-        flight_from_city: String,
-        flight_to_city: String,
-        flight_preferred_time: String,
-        accomendation_type: String,
-        hotel_checkin_date: String,
-        hotel_checkout_date: String,
+        id: Number,
+        data: {
+          travel_mode: String,
+          travel_from_city: { value: String, label: String },
+          travel_to_city: { value: String, label: String },
+          departure: Date,
+          return: Date,
+        },
+      },
+    ],
+    travellersData: [
+      {
+        id: Number,
+        data: {
+          is_employee: String,
+          emp_id: String,
+          name: String,
+          gender: String,
+          phone: String,
+          email: String,
+          dob: Date,
+        },
+      },
+    ],
+
+    accommodationData: [
+      {
+        id: Number,
+        data: {
+          city: {
+            value: String,
+            label: String,
+          },
+          checkIn: Date,
+          checkOut: Date,
+          breakfastRequired: String,
+          number_of_rooms: Number,
+          number_of_adults: Number,
+          number_of_children: Number,
+        },
+      },
+    ],
+    roomsData: [
+      {
+        id: Number,
+        data: {
+          emp_id: String,
+          room: String,
+          name: String,
+          phone: String,
+          email: String,
+          dob: String,
+        },
       },
     ],
   },

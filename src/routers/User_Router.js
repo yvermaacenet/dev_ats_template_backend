@@ -17,4 +17,7 @@ router.route("/get_user_names/").get(user_controller.get_user_names);
 router
   .route("/get_employee_details_for_travel/:emp_id")
   .get(user_controller.get_employee_details_for_travel);
+router
+  .route("/all_travel_request_data/")
+  .post(user_controller.all_travel_request_data);
 module.exports = router;
