@@ -15,6 +15,6 @@ router
 
 router.route("/get_user_names/").get(user_controller.get_user_names);
 router
-  .route("/get_employee_details_for_travel/:emp_id")
+  .route("/get_employee_details_for_travel")
   .get(user_controller.get_employee_details_for_travel);
 module.exports = router;
