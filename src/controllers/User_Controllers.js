@@ -1,5 +1,6 @@
 const On_Boarding_Model = require("../models/On_Boarding_Model");
 const Zoho_Model = require("../models/Zoho_Model");
+const Travel_Request_Form_Model = require("../models/Travel_Request_Model");
 
 // <!=============== User ====================>
 exports.user_update = async (req, res) => {
@@ -172,6 +173,11 @@ exports.get_user_names = async (req, res) => {
   });
   res.status(201).send(all_user_names);
 };
+exports.all_travel_request_data = async (req, res) => {
+  console.log(req.body);
+  await Travel_Request_Form_Model.create(req.body);
+  res.status(201).send("Created");
+};
 exports.get_employee_details_for_travel = async (req, res) => {
   const emp_id = req.params.emp_id;
   const all_user_names = await Zoho_Model.find({
@@ -184,6 +190,7 @@ exports.get_employee_details_for_travel = async (req, res) => {
     ["Date of Birth"]: 1,
     Phone: 1,
     ["Email address"]: 1,
+    Tags: 1,
   });
   res.status(201).send(all_user_names);
 };

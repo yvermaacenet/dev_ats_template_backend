@@ -41,7 +41,7 @@ exports.get_travel_request_by_id = async (req, res) => {
 exports.get_travel_request_by_email_id = async (req, res) => {
   try {
     const data = await Travel_Request_Form_Model.find({
-      "employee.email": req.params.email_id,
+      created_by: req.params.email_id,
     });
     res.status(201).send(data);
   } catch (error) {
