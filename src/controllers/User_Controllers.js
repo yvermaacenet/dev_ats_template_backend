@@ -181,7 +181,7 @@ exports.all_travel_request_data = async (req, res) => {
 exports.get_employee_details_for_travel = async (req, res) => {
   const emp_id = req.params.emp_id;
   const all_user_names = await Zoho_Model.find({
-    // ["Employee ID"]: emp_id,
+    ["Employee ID"]: emp_id,
   }).select({
     _id: 0,
     ownerName: 1,
