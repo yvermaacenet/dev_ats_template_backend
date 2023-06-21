@@ -60,7 +60,7 @@ exports.get_documents_counter = async (req, res) => {
         ? await Travel_Request_Form_Model.find().countDocuments({
             $and: [
               { management_approval: "Pending" },
-              { "employee.email": { $nin: req?.params?.email } },
+              { created_by: { $nin: req?.params?.email } },
             ],
           })
         : await Travel_Request_Form_Model.find({
