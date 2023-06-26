@@ -18,6 +18,7 @@ exports.get_travel_request = async (req, res) => {
   }
 };
 exports.put_travel_request = async (req, res) => {
+  console.log(req.params);
   try {
     const data = await Travel_Request_Form_Model.findByIdAndUpdate(
       { _id: req.params._id },

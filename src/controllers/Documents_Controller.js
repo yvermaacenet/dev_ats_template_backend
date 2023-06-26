@@ -47,11 +47,6 @@ exports.get_documents_counter = async (req, res) => {
       ],
     }).countDocuments();
 
-    const Total_Cabin_Booking =
-      await Cabin_Slot_Booking_Model.find().countDocuments();
-    const Total_Cabin_Booking_By_User_ID = await Cabin_Slot_Booking_Model.find({
-      user_id: req.params.user_id,
-    }).countDocuments();
     const Travel_Request_By_User_ID = await Travel_Request_Form_Model.find({
       "employee.user_id": req.params.user_id,
     }).countDocuments();
@@ -60,7 +55,7 @@ exports.get_documents_counter = async (req, res) => {
         ? await Travel_Request_Form_Model.find().countDocuments({
             $and: [
               { management_approval: "Pending" },
-              { "employee.email": { $nin: req?.params?.email } },
+              { created_by: { $nin: req?.params?.email } },
             ],
           })
         : await Travel_Request_Form_Model.find({

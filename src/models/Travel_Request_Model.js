@@ -68,6 +68,7 @@ const Travel_Request_Form_Schema = mongoose.Schema(
           phone: String,
           email: String,
           dob: String,
+          is_employee: String,
         },
       },
     ],
