@@ -7,6 +7,7 @@ const Travel_Request_Form_Schema = mongoose.Schema(
     created_by: String,
     remarks: String,
     basicDetails: {
+      booking_for: String,
       billable: String,
       client_id: String,
       special_request: String,
