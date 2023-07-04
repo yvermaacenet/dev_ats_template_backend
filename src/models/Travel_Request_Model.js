@@ -32,12 +32,13 @@ const Travel_Request_Form_Schema = mongoose.Schema(
         id: Number,
         data: {
           is_employee: String,
-          emp_id: String,
+          emp_id: { value: String, label: String },
           name: String,
           gender: String,
           phone: String,
           email: String,
           dob: Date,
+          preferred_time: String,
         },
       },
     ],
@@ -63,7 +64,7 @@ const Travel_Request_Form_Schema = mongoose.Schema(
       {
         id: Number,
         data: {
-          emp_id: String,
+          emp_id: { value: String, label: String },
           room: String,
           name: String,
           phone: String,
