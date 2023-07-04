@@ -42,6 +42,7 @@ const Zoho_Router = require("./routers/Zoho_Router");
 const Location_Router = require("./routers/Location_Router");
 const Travel_Router = require("./routers/Travel_Request_Form_Router");
 const Airport_Router = require("./routers/Airport_Router");
+const Email_Router = require("./routers/Email_Router");
 
 app.use(User_Router);
 app.use(Cabin_Router);
@@ -55,6 +56,7 @@ app.use(Zoho_Router);
 app.use(Location_Router);
 app.use(Travel_Router);
 app.use(Airport_Router);
+app.use(Email_Router);
 
 app.listen(port, () => {
   console.log(`Connection is setup at ${port}`);
