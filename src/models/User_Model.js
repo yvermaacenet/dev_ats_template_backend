@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const User_Schema = mongoose.Schema({
@@ -185,12 +184,12 @@ User_Schema.statics.updateData = async function (_id, obj) {
   return updatedData;
 };
 
-User_Schema.pre("save", async function (next) {
-  if (this.isModified("password")) {
-    this.password = await bcrypt.hash(this.password, 10);
-  }
-  next();
-});
+// User_Schema.pre("save", async function (next) {
+//   if (this.isModified("password")) {
+//     this.password = await bcrypt.hash(this.password, 10);
+//   }
+//   next();
+// });
 
 const User_Model = new mongoose.model("users_tbl", User_Schema);
 
