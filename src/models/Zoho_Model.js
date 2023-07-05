@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const Zoho_Employee_Schema = new mongoose.Schema(
@@ -92,12 +91,12 @@ Zoho_Employee_Schema.statics.generateCookie = async function (req, res, token) {
   }
 };
 
-Zoho_Employee_Schema.pre("save", async function (next) {
-  if (this.isModified("password")) {
-    this.password = await bcrypt.hash(this.password, 10);
-  }
-  next();
-});
+// Zoho_Employee_Schema.pre("save", async function (next) {
+//   if (this.isModified("password")) {
+//     this.password = await bcrypt.hash(this.password, 10);
+//   }
+//   next();
+// });
 
 const Zoho_Model = new mongoose.model(
   "Zoho_Employee_tbl",
