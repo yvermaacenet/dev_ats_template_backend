@@ -174,9 +174,20 @@ exports.get_user_names = async (req, res) => {
   res.status(201).send(all_user_names);
 };
 exports.all_travel_request_data = async (req, res) => {
-  console.log(req.body);
-  await Travel_Request_Form_Model.create(req.body);
-  res.status(201).send("Created");
+  try {
+    const countIndex = await Travel_Request_Form_Model.find().select({
+      _id: 0,
+      request_id: 1,
+    });
+    const genrateRequestId =
+      "AceTravel-" + (countIndex.length + 1).toString().padStart(4, "0");
+
+    const data = { ...req.body, request_id: genrateRequestId };
+    await Travel_Request_Form_Model.create(data);
+    res.status(201).send("Created");
+  } catch (error) {
+    res.status(400).send(error);
+  }
 };
 exports.get_employee_details_for_travel = async (req, res) => {
   const emp_id = req.params.emp_id;
