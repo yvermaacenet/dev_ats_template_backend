@@ -3,8 +3,6 @@ require("dotenv").config();
 
 const configSES = {
   apiVersion: "2010-12-01",
-  accessKeyId: "AKIA5GOGFPUZ6INPJAHF",
-  secretAccessKey: "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",
   region: "ap-south-1",
 };
 
