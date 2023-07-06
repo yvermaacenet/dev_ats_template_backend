@@ -21,7 +21,7 @@ exports.Email_Controller = async (req, res) => {
     Source: "system@acenet.io",
     Template: "Travel_Request",
     TemplateData: JSON.stringify({
-      user: user,
+      user: "yogendra@acenet.io",
       start_date: start_date,
       destination: destination,
       reason_for_travel: reason_for_travel,
@@ -31,7 +31,7 @@ exports.Email_Controller = async (req, res) => {
   const ManagementParams = {
     Destination: {
       //   ToAddresses: ["amit@acenet.io","manishg@acenet.io","manish@acenet.io", "sunil@acenet.io", "vasanth@acenet.io"],
-      ToAddresses: ["akshay@acenet.io"],
+      ToAddresses: ["yogendra@acenet.io"],
     },
     Source: "system@acenet.io",
     Template: "Management_Leave_Request",

@@ -175,12 +175,9 @@ exports.get_user_names = async (req, res) => {
 };
 exports.all_travel_request_data = async (req, res) => {
   try {
-    const countIndex = await Travel_Request_Form_Model.find().select({
-      _id: 0,
-      request_id: 1,
-    });
+    const countIndex = await Travel_Request_Form_Model.find().countDocuments();
     const genrateRequestId =
-      "AceTravel-" + (countIndex.length + 1).toString().padStart(4, "0");
+      "AceTravel-" + (countIndex + 1).toString().padStart(4, "0");
 
     const data = { ...req.body, request_id: genrateRequestId };
     await Travel_Request_Form_Model.create(data);
