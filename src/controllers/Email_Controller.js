@@ -41,30 +41,34 @@ exports.Email_Controller = async (req, res) => {
     }),
   };
   try {
-    let sendPromise = new AWS.SES().sendTemplatedEmail(emailParams).promise();
-    let sendManagementPromise = new AWS.SES()
-      .sendTemplatedEmail(ManagementParams)
-      .promise();
+    if (process.env.ENVIRONMENT === "prod") {
+      let sendPromise = new AWS.SES().sendTemplatedEmail(emailParams).promise();
+      let sendManagementPromise = new AWS.SES()
+        .sendTemplatedEmail(ManagementParams)
+        .promise();
 
-    sendPromise
-      .then(function (data) {
-        console.log(data.MessageId);
-        sendManagementPromise
-          .then(function (data) {
-            console.log(data.MessageId);
-            res.status(201).json({ message: "Email has been sent" });
-          })
-          .catch(function (err) {
-            console.error(err, err.stack);
-            res.status(500).json({
-              message: "Something Went Wrong",
+      sendPromise
+        .then(function (data) {
+          console.log(data.MessageId);
+          sendManagementPromise
+            .then(function (data) {
+              console.log(data.MessageId);
+              res.status(201).json({ message: "Email has been sent" });
+            })
+            .catch(function (err) {
+              console.error(err, err.stack);
+              res.status(500).json({
+                message: "Something Went Wrong",
+              });
             });
-          });
-      })
-      .catch(function (err) {
-        console.error(err, err.stack);
-        res.status(500).json({ message: "Something Went Wrong" });
-      });
+        })
+        .catch(function (err) {
+          console.error(err, err.stack);
+          res.status(500).json({ message: "Something Went Wrong" });
+        });
+    } else {
+      res.status(200).json({ message: "Email sent in dev environment" });
+    }
   } catch (error) {
     console.error("Error creating email template:", error);
   }

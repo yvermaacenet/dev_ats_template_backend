@@ -17,3 +17,10 @@ exports.get_airport = async (req, res) => {
     res.status(404).send({ message: error });
   }
 };
+exports.get_airport_s = async (req, res) => {
+  try {
+    res.status(201).send("Hello");
+  } catch (error) {
+    res.status(404).send("error");
+  }
+};
