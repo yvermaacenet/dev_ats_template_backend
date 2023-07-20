@@ -53,29 +53,27 @@ exports.Email_Controller = async (req, res) => {
       .sendTemplatedEmail(ManagementParams)
       .promise();
 
-      sendPromise
-        .then(function (data) {
-          console.log(data.MessageId);
-          sendManagementPromise
-            .then(function (data) {
-              console.log(data.MessageId);
-              res.status(201).json({ message: "Email has been sent" });
-            })
-            .catch(function (err) {
-              console.error(err, err.stack);
-              res.status(500).json({
-                message: "Something Went Wrong",
-              });
+    sendPromise
+      .then(function (data) {
+        console.log(data.MessageId);
+        sendManagementPromise
+          .then(function (data) {
+            console.log(data.MessageId);
+            res.status(201).json({ message: "Email has been sent" });
+          })
+          .catch(function (err) {
+            console.error(err, err.stack);
+            res.status(500).json({
+              message: "Something Went Wrong",
             });
-        })
-        .catch(function (err) {
-          console.error(err, err.stack);
-          res.status(500).json({ message: "Something Went Wrong" });
-        });
-    } else {
-      res.status(200).json({ message: "Email sent in dev environment" });
-    }
-  } catch (error) {
+          });
+      })
+      .catch(function (err) {
+        console.error(err, err.stack);
+        res.status(500).json({ message: "Something Went Wrong" });
+      });
+  }
+  catch (error) {
     console.error("Error creating email template:", error);
   }
 };
