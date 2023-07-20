@@ -25,6 +25,7 @@ const Travel_Request_Form_Schema = mongoose.Schema(
           travel_to_city: { value: String, label: String },
           departure: Date,
           return: Date,
+          preferred_time: String,
         },
       },
     ],
