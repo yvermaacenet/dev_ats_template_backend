@@ -3,7 +3,6 @@ const Zoho_Model = require("../models/Zoho_Model");
 const fs = require("fs");
 
 exports.sign_in_zoho = async (req, res) => {
-	console.log(process.env);
 	try {
     const authUrl = `${process.env.ZOHO_DOMAIN}/v2/auth?scope=AaaServer.profile.READ,ZohoPeople.employee.ALL,ZohoPeople.forms.ALL&prompt=consent&client_id=${process.env.CLIENT_ID}&response_type=code&access_type=offline&redirect_uri=${process.env.REDIRECT_URL}`;
     const response = await axios.get(authUrl);
