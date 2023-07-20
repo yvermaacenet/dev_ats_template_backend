@@ -16,8 +16,9 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
   const code = req.params.code;
   try {
     if (code) {
-      const authUrl = `${process.env.ZOHO_DOMAIN}/v2/token?grant_type=${process.env.GRANT_TYPE}&client_id=${process.env.ClIENT_ID}&client_secret=${process.env.ClIENT_SECRET}&redirect_uri=${process.env.REDIRECT_URL}&code=${code}`;
-      const response = await axios.post(authUrl);
+      const authUrl = `${process.env.ZOHO_DOMAIN}/v2/token?grant_type=${process.env.GRANT_TYPE}&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&redirect_uri=${process.env.REDIRECT_URL}&code=${code}`;
+	    const response = await axios.post(authUrl);
+
       // console.log("response", response);
       if (response?.data?.access_token) {
         const response2 = await axios.get(

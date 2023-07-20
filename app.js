@@ -6,7 +6,7 @@ const app = express();
 const zoho_controller = require("./src/controllers/Zoho_Controllers.js");
 const db_controller = require("./src/controllers/DB_Controllers");
 
-const port = process.env.PORT || 5503;
+const port = process.env.PORT || 5502;
 app.use(express.json({ limit: "50mb" }));
 
 const cors = require("cors");
