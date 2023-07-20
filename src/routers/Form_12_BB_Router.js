@@ -2,7 +2,8 @@ const express = require("express");
 const router = new express.Router();
 const auth = require("../middleware/auth");
 
-const Form_12_BB_Controller = require("../controllers/form_12_bb_controller");
+// const Form_12_BB_Controller = require("../controllers/form_12_bb_controller");
+const Form_12_BB_Controller = require("../controllers/Form_12_BB_Controller");
 // <!===============On Boarding  ====================>
 router
   .route("/form_12_bb")

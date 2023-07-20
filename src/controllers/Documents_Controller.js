@@ -48,20 +48,21 @@ exports.get_documents_counter = async (req, res) => {
     }).countDocuments();
 
     const Travel_Request_By_User_ID = await Travel_Request_Form_Model.find({
-      "employee.user_id": req.params.user_id,
+      created_by: req.params.email,
     }).countDocuments();
     const Travel_Request_For_Approval_and_Decline =
-      req?.params?.acenet_role === "Management"
-        ? await Travel_Request_Form_Model.find().countDocuments({
-            $and: [
-              { management_approval: "Pending" },
-              { created_by: { $nin: req?.params?.email } },
-            ],
-          })
-        : await Travel_Request_Form_Model.find({
-            "employee.reporting_manager_emp_id":
-              req.params.reporting_manager_emp_id,
-          }).countDocuments();
+      // req?.params?.acenet_role === "Management"
+      // ?
+      await Travel_Request_Form_Model.find().countDocuments({
+        $and: [
+          { management_approval: "Pending" },
+          { created_by: { $nin: req?.params?.email } },
+        ],
+      });
+    // : await Travel_Request_Form_Model.find({
+    //     "employee.reporting_manager_emp_id":
+    //       req.params.reporting_manager_emp_id,
+    //   }).countDocuments();
     res.status(201).send({
       Active_Users,
       Pending_Onboarding,
