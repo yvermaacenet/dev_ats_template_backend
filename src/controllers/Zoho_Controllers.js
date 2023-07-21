@@ -18,9 +18,10 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
     if (code) {
       const authUrl = `${process.env.ZOHO_DOMAIN}/v2/token?grant_type=${process.env.GRANT_TYPE}&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&redirect_uri=${process.env.REDIRECT_URL}&code=${code}`;
 	    const response = await axios.post(authUrl);
-
       // console.log("response", response);
       if (response?.data?.access_token) {
+//	      console.log('before');
+
         const response2 = await axios.get(
           "https://accounts.zoho.in/oauth/user/info",
           {
@@ -29,12 +30,15 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
             },
           }
         );
+//	      console.log(response2);
         const envData = fs.readFileSync(".env", "utf8");
         const newEnvData = envData.replace(
           /REFRENCE_TOKEN\s*=\s*".*"/,
           `REFRENCE_TOKEN="${response?.data?.refresh_token}"`
         );
+	      console.log('write');
         fs.writeFileSync(".env", newEnvData);
+		console.log('write ok');
         const userDetails = await Zoho_Model?.find({
           "Email address": response2?.data?.Email,
         }).select({
