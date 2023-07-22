@@ -1,6 +1,6 @@
 const { default: axios } = require("axios");
 const Zoho_Model = require("../models/Zoho_Model");
-const fs = require("fs");
+// const fs = require("fs");
 
 exports.sign_in_zoho = async (req, res) => {
   try {
@@ -31,15 +31,16 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
           }
         );
 //	      console.log(response2);
-        const envData = fs.readFileSync(".env", "utf8");
-        const newEnvData = envData.replace(
-          /REFRENCE_TOKEN\s*=\s*".*"/,
-          `REFRENCE_TOKEN="${response?.data?.refresh_token}"`
-        );
-	      console.log('write');
-        fs.writeFileSync(".env", newEnvData);
-		console.log('write ok');
-        const userDetails = await Zoho_Model?.find({
+//        const envData = fs.readFileSync(".env", "utf8");
+//        const newEnvData = envData.replace(
+//         /REFRENCE_TOKEN\s*=\s*".*"/,
+//        `REFRENCE_TOKEN="${response?.data?.refresh_token}"`
+//      );
+//     console.log(response?.data?.refresh_token);
+//	 fs.writeFileSync(".env", newEnvData);
+//		console.log('write ok');
+
+	const userDetails = await Zoho_Model?.find({
           "Email address": response2?.data?.Email,
         }).select({
           "First Name": 1,
@@ -92,7 +93,7 @@ exports.sign_in_zoho_get_access_token = async (req, res) => {
 
 exports.compare_data_between_zoho_and_database = async (req, res) => {
   try {
-    const authUrl = `${process.env.ZOHO_DOMAIN}/v2/token?refresh_token=${process.env.REFRENCE_TOKEN}&client_id=${process.env.ClIENT_ID}&client_secret=${process.env.ClIENT_SECRET}&grant_type=refresh_token`;
+    const authUrl = `${process.env.ZOHO_DOMAIN}/v2/token?refresh_token=${process.env.REFRENCE_TOKEN}&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&grant_type=refresh_token`;
     const response = await axios.post(authUrl);
     if (response?.data?.access_token) {
       const record = await axios.get(
