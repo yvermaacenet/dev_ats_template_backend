@@ -1,4 +1,4 @@
-require("dotenv").config({path:__dirname +'/.env'});
+require("dotenv").config({ path: __dirname + "/.env" });
 require("./src/db/conn");
 const express = require("express");
 const cron = require("node-cron");
@@ -21,12 +21,12 @@ app.use(
 //cron.schedule("0 12 * * *", () => {
 //  console.log("zoho data fetch at 12:00 AM");
 //});
-//zoho_controller.compare_data_between_zoho_and_database();
+// zoho_controller.compare_data_between_zoho_and_database();
 //cron.schedule("02 16 * * *", () => {
 //  console.log(
 //    "Acenet workflow data base download at 00:00 on every 10th day-of-month"
 //  );
-  // db_controller.db_backup();
+// db_controller.db_backup();
 //});
 
 const User_Router = require("./src/routers/User_Router");
