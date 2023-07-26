@@ -198,7 +198,7 @@ exports.get_employee_details_for_travel = async (req, res) => {
     ["Date of Birth"]: 1,
     Phone: 1,
     ["Email address"]: 1,
-    Tags: 1,
+    Gender: 1,
   });
   res.status(201).send(all_user_names);
 };
