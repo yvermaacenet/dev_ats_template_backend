@@ -45,7 +45,7 @@ exports.Email_Controller = async (req, res) => {
   //email to be sent to the Management team for approval
   const ManagementParams = {
     Destination: {
-      ToAddresses: ["honey@acenet.io", "akshay@acenet.io"],
+      ToAddresses: [process.env.LEADERSHIP],
     },
     Source: "system@acenet.io",
     Template: "Management_Leave_Request",
@@ -151,7 +151,7 @@ exports.Email_Status_Controller = async (req, res) => {
 
     const ManagementParams = {
       Destination: {
-        ToAddresses: ["honey@acenet.io"],
+        ToAddresses: [process.env.GROUPLA],
       },
       Source: "system@acenet.io",
       Template: "Groupla_Email_Template",

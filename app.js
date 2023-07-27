@@ -42,6 +42,7 @@ const Location_Router = require("./src/routers/Location_Router");
 const Travel_Router = require("./src/routers/Travel_Request_Form_Router");
 const Airport_Router = require("./src/routers/Airport_Router");
 const Email_Router = require("./src/routers/Email_Router");
+const Client_project_Router = require("./src/routers/Client_Project_Router");
 
 app.use(User_Router);
 app.use(Cabin_Router);
@@ -56,6 +57,7 @@ app.use(Location_Router);
 app.use(Travel_Router);
 app.use(Airport_Router);
 app.use(Email_Router);
+app.use(Client_project_Router);
 
 app.listen(port, () => {
   console.log(`Connection is setup at ${port}`);
