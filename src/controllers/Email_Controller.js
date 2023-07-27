@@ -45,7 +45,7 @@ exports.Email_Controller = async (req, res) => {
   //email to be sent to the Management team for approval
   const ManagementParams = {
     Destination: {
-      ToAddresses: ["leadership@acenet.io"],
+      ToAddresses: ["honey@acenet.io", "akshay@acenet.io"],
     },
     Source: "system@acenet.io",
     Template: "Management_Leave_Request",
