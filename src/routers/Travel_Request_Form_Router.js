@@ -15,7 +15,7 @@ router
   .put(travel_request_controller.put_travel_request);
 router
   .route("/get_travel_request_by_id/:_id")
-  .get(auth, travel_request_controller.get_travel_request_by_id);
+  .get(travel_request_controller.get_travel_request_by_id);
 router
   .route("/get_travel_request_by_email_id/:email_id")
   .get(auth, travel_request_controller.get_travel_request_by_email_id);

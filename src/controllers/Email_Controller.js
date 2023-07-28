@@ -11,15 +11,8 @@ const configSES = {
 AWS.config.update(configSES);
 
 exports.Email_Controller = async (req, res) => {
-  const {
-    user,
-    email,
-    basicDetails,
-    rows,
-    travellersData,
-    accommodationData,
-    roomsData,
-  } = req.body;
+  const { user, email, basicDetails, rows, travellersData, accommodationData } =
+    req.body;
 
   const recipients = [];
 
@@ -35,7 +28,6 @@ exports.Email_Controller = async (req, res) => {
         rows: rows,
         travellersData: travellersData,
         accommodationData: accommodationData,
-        roomsData: roomsData,
       }),
     };
 
@@ -54,7 +46,6 @@ exports.Email_Controller = async (req, res) => {
       rows: rows,
       travellersData: travellersData,
       accommodationData: accommodationData,
-      roomsData: roomsData,
     }),
   };
 
@@ -70,7 +61,6 @@ exports.Email_Controller = async (req, res) => {
           rows: rows,
           travellersData: travellersData,
           accommodationData: accommodationData,
-          roomsData: roomsData,
         }),
       };
 
@@ -117,7 +107,6 @@ exports.Email_Status_Controller = async (req, res) => {
     rows,
     travellersData,
     accommodationData,
-    roomsData,
   } = req.body;
 
   const recipients = [];
